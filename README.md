@@ -25,20 +25,23 @@ All data is retrieved from the World Bank API.
 ---
 
 ## Project Structure
+
+```
 senegal-macro-analysis/
-│
+|
 ├── data/
 │   ├── raw/
 │   └── processed/
-│
+|
 ├── notebooks/
 │   └── senegal_macroeconomic_analysis.ipynb
-│
+|
 ├── src/
 │   └── utils.py
-│
+|
 ├── README.md
 └── requirements.txt
+```
 
 ---
 
