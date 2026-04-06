@@ -1,44 +1,80 @@
 # Senegal Macroeconomic Analysis
 
-## Objective
+This project analyzes key macroeconomic indicators for Senegal using data from the World Bank API.
 
-This project analyzes Senegal’s macroeconomic indicators using data from the World Bank API. 
-
-The goal is to build a reproducible data pipeline and explore the dynamics between economic growth, inflation, and public debt. This project focuses on understanding how these key variables interact over time.
+The goal is to build a clean, reproducible pipeline to retrieve, process, and visualize economic data.
 
 ---
 
-## Data Sources
+## Indicators
 
-- World Bank API  
-- Indicators used:
-  - GDP (level and growth)
-  - Inflation (CPI)
-  - Debt-to-GDP ratio
+The analysis currently focuses on:
+
+- GDP (NY.GDP.MKTP.CD)
+- Inflation (FP.CPI.TOTL.ZG)
+
+---
+
+## Data Source
+
+All data is retrieved from the World Bank API.
+
+- Country: Senegal (SN)
+- Period: 2000 – 2024
+
+---
+
+## Project Structure
+senegal-macro-analysis/
+│
+├── data/
+│   ├── raw/
+│   └── processed/
+│
+├── notebooks/
+│   └── senegal_macroeconomic_analysis.ipynb
+│
+├── src/
+│   └── utils.py
+│
+├── README.md
+└── requirements.txt
 
 ---
 
 ## Methodology
 
-The project follows a structured analytical workflow:
+The analysis follows a structured pipeline:
 
-1. **Data Collection**
-   - Data retrieved programmatically using the World Bank API
-
-2. **Data Cleaning**
-   - Handling missing values
-   - Structuring time series data
-   - Outlier detection and flagging
-
-3. **Data Structuring**
-   - Organizing data into a consistent time-series format
-   - Preparing datasets for analysis
-
-4. **Analysis (in progress)**
-   - Computation of GDP growth
-   - Comparison with official World Bank indicators
-   - Exploration of relationships between macroeconomic variables
+1. Data collection using the World Bank API  
+2. Data cleaning (handling missing values and detecting outliers using the IQR method)  
+3. Data visualization (time series, distributions, and relationships)
 
 ---
 
-## Project Structure
+## Utility Functions
+
+Reusable functions are implemented in:
+
+`src/utils.py`
+
+They include:
+
+- `get_data` → retrieve and structure data from the API  
+- `clean_data` → clean dataset and detect/remove outliers  
+- `line_plt` → time series visualization  
+- `hist_plt` → distribution analysis  
+- `scat_plt` → relationship between variables  
+- `box_plt` → outlier detection  
+
+Each function is modular and documented with clear parameters.
+
+---
+
+## How to Use
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/senegal-macro-analysis.git
+cd senegal-macro-analysis
