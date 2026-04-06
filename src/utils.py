@@ -3,11 +3,27 @@
 # 1. We import the librairies that we need
 import requests
 import pandas as pd
-import json
+import seaborn as sns
+import matplotlib.pyplot as plt
+
 
 # 2. Now, we create the the function that will take the data from the world bank website and transform it into a dataframe for futher analysis
 
 def get_data(indicator_code, country_code, start_year, end_year, scale, new_name = 'value'):
+    """
+    Took data from the World Bank API and return a cleaned DataFrame.
+
+    Parameters:
+        indicator_code (str): World Bank indicator code (e.g., GDP, inflation)
+        country_code (str): Country ISO code (e.g., 'SN' for Senegal)
+        start_year (int): Start year of data
+        end_year (int): End year of data
+        scale (float): Scaling factor (e.g., 1e9 for billions)
+        new_name (str): Name of the resulting column
+
+    Returns:
+        pd.DataFrame: Time-indexed DataFrame with one column of processed data
+    """
     
     # This will use the API of the woldbank to retrieve all the information, we need about X country 
     url = f"https://api.worldbank.org/v2/country/{country_code}/indicator/{indicator_code}"
@@ -37,10 +53,24 @@ def get_data(indicator_code, country_code, start_year, end_year, scale, new_name
 # 3. Now we create the function to drop all the missing values  and by the same way, calculate outliers to see if in the dataframe, there is any outlier
 
 def clean_data(df, column):
+    """
+    Clean dataset by removing missing values and detecting/removing outliers using IQR.
+
+    Parameters:
+        df (pd.DataFrame): Input DataFrame
+        column (str): Column name to clean and analyze
+
+    Returns:
+        tuple:
+            cleaned_df (pd.DataFrame): Data without outliers
+            outliers (pd.DataFrame): Detected outliers
+            remove_outlier (int): Number of removed outliers
+            missing_values (pd.Series): Count of missing values per column
+    """
     # Check for missing values
     missing_values = df.isna().sum()
     df = df.dropna()
-    
+
     # Store original size
     original_size = df.shape[0]
 
@@ -66,5 +96,117 @@ def clean_data(df, column):
   
     return cleaned_df, outliers, remove_outlier, missing_values
 
+# 4. Here, we will create the visualisation functions, a line chart for the time series, a histogram for the distibution, a box plot for the detection of outliers and a scatter plot for the relation between different component 
+# A. Line Chart Function
 
+def line_plt(df, column, xlab, ylab, title = 'Time-series'):
+    """
+    Plot a time series line chart.
 
+    Parameters:
+        df (pd.DataFrame): Input data
+        column (str): Column to plot
+        xlab (str): Label for x-axis
+        ylab (str): Label for y-axis
+        title (str): Title of the plot
+
+    Returns:
+        None
+    """
+    
+    # We determine the plot size 
+    plt.figure(figsize=(15,8))
+
+    # Here, we create the plot and labelise it properly
+    sns.lineplot(data=df, x= df.index, y=column)
+    plt.title(title)
+    plt.xlabel(xlab)
+    plt.ylabel(ylab)
+
+    #Now we show the plot 
+    plt.show()
+
+# B. Histogram Function
+def hist_plt(df, column, xlab, kde = False, title = 'Histogram'):
+    """
+    Plot a histogram to visualize the distribution of a variable.
+
+    Parameters:
+        df (pd.DataFrame): Input data
+        column (str): Column to analyze
+        xlab (str): Label for x-axis
+        kde (bool): Whether to overlay a density curve
+        title (str): Title of the plot
+
+    Returns:
+        None
+    """
+
+    # We determine the plot size
+    plt.figure(figsize=(15,8))
+
+    # Here, we create the plot and labelise it properly
+    sns.histplot(data= df, x= column, kde= kde)
+    plt.title(title)
+    plt.xlabel(xlab)
+    if kde == True : 
+        plt.ylabel('Density')
+    else : 
+        plt.ylabel('Count')
+    #Now we show the plot 
+    plt.show()
+
+# C. Scatter Plot function
+def scat_plt(df, x_col, y_col, xlab, ylab ,title = 'Scatter Plot'):
+    """
+    Plot a scatter plot to analyze the relationship between two variables.
+
+    Parameters:
+        df (pd.DataFrame): Input data
+        x_col (str): Column for x-axis
+        y_col (str): Column for y-axis
+        xlab (str): Label for x-axis
+        ylab (str): Label for y-axis
+        title (str): Title of the plot
+
+    Returns:
+        None
+    """
+   
+    # We determine the plot size
+    plt.figure(figsize=(15,8))
+
+    # Here, we create the plot and labelise it properly
+    sns.scatterplot(data= df, x = x_col, y = y_col)
+    plt.title(title)
+    plt.xlabel(xlab)
+    plt.ylabel(ylab)
+
+   #Now we show the plot 
+    plt.show()
+
+# D. Box Plot function
+def box_plt(df, column, xlab, title = 'Box Plot'):
+    """
+    Plot a boxplot to detect outliers and visualize distribution.
+
+    Parameters:
+        df (pd.DataFrame): Input data
+        column (str): Column to analyze
+        xlab (str): Label for x-axis
+        title (str): Title of the plot
+
+    Returns:
+        None
+    """
+    
+    # We determine the plot size
+    plt.figure(figsize=(15,8))
+
+    # Here, we create the plot and labelise it properly
+    sns.boxplot(data= df, x = column)
+    plt.title(title)
+    plt.xlabel(xlab)
+    
+    #Now we show the plot 
+    plt.show()
