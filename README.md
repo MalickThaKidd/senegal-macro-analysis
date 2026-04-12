@@ -1,4 +1,4 @@
-# Senegal Macroeconomic Analysis
+# 🇸🇳 Senegal Macroeconomic Analysis
 
 This project analyzes key macroeconomic indicators for Senegal using data from the World Bank API.
 
@@ -10,17 +10,17 @@ The goal is to build a clean, reproducible pipeline to retrieve, process, and vi
 
 The analysis currently focuses on:
 
-- GDP (NY.GDP.MKTP.CD)
-- Inflation (FP.CPI.TOTL.ZG)
+- GDP — `NY.GDP.MKTP.CD`
+- Inflation — `FP.CPI.TOTL.ZG`
 
 ---
 
 ## Data Source
 
-All data is retrieved from the World Bank API.
+All data is retrieved from the World Bank Open Data API.
 
 - Country: Senegal (SN)
-- Period: 2000 – 2024
+- Period: 1990 – 2024
 
 ---
 
@@ -47,10 +47,8 @@ senegal-macro-analysis/
 
 ## Methodology
 
-The analysis follows a structured pipeline:
-
-1. Data collection using the World Bank API  
-2. Data cleaning (handling missing values and detecting outliers using the IQR method)  
+1. Data collection from the World Bank API  
+2. Data cleaning (missing values handling and outlier detection using the IQR method)  
 3. Data visualization (time series, distributions, and relationships)
 
 ---
@@ -70,7 +68,20 @@ They include:
 - `scat_plt` → relationship between variables  
 - `box_plt` → outlier detection  
 
-Each function is modular and documented with clear parameters.
+Each function is modular, reusable, and documented with clear parameters.
+
+---
+## 🎯 Future Improvements
+
+This project is designed to evolve progressively. New features and functions will be added over time to improve the analysis and extend its scope.
+
+Planned improvements include:
+
+- Addition of new macroeconomic indicators (debt, unemployment, etc.)
+- More advanced data visualizations
+- Comparative analysis between countries
+- Integration of forecasting models (time series / machine learning)
+- Continuous improvement of utility functions (`src/utils.py`)
 
 ---
 
