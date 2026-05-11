@@ -37,7 +37,8 @@ senegal-macro-analysis/
 │   └── senegal_macroeconomic_analysis.ipynb
 |
 ├── src/
-│   └── utils.py
+│   ├── utils.py          # Data retrieval, cleaning, and visualization functions
+│   └── indicators.py     # Macroeconomic indicator functions
 |
 ├── README.md
 └── requirements.txt
@@ -47,41 +48,49 @@ senegal-macro-analysis/
 
 ## Methodology
 
-1. Data collection from the World Bank API  
-2. Data cleaning (missing values handling and outlier detection using the IQR method)  
-3. Data visualization (time series, distributions, and relationships)
+The analysis follows a structured pipeline:
+
+1. Data collection from the World Bank API
+2. Data cleaning, including missing values handling and outlier detection
+3. Macroeconomic indicator computation
+   - GDP growth rate
+   - CAGR / TCAM
+4. Data visualization and economic interpretation
 
 ---
 
 ## Utility Functions
 
-Reusable functions are implemented in:
+Reusable functions are implemented in the `src/` directory.
 
-`src/utils.py`
+`src/utils.py` includes:
+- `get_data` → retrieve and structure data from the World Bank API
+- `clean_data` → clean datasets and detect/remove outliers
+- `line_plt` → time series visualization
+- `hist_plt` → distribution analysis
+- `scat_plt` → relationship between variables
+- `box_plt` → outlier visualization
 
-They include:
-
-- `get_data` → retrieve and structure data from the API  
-- `clean_data` → clean dataset and detect/remove outliers  
-- `line_plt` → time series visualization  
-- `hist_plt` → distribution analysis  
-- `scat_plt` → relationship between variables  
-- `box_plt` → outlier detection  
-
-Each function is modular, reusable, and documented with clear parameters.
+`src/indicators.py` includes:
+- `compute_growth_rate` → compute annual percentage growth
+- `compute_cagr` → compute compound annual growth rate over a selected period
 
 ---
 ## 🎯 Future Improvements
 
-This project is designed to evolve progressively. New features and functions will be added over time to improve the analysis and extend its scope.
+This project is designed to evolve progressively into a macroeconomic analysis engine.
 
 Planned improvements include:
 
-- Addition of new macroeconomic indicators (debt, unemployment, etc.)
-- More advanced data visualizations
-- Comparative analysis between countries
-- Integration of forecasting models (time series / machine learning)
-- Continuous improvement of utility functions (`src/utils.py`)
+- Addition of new macroeconomic indicators such as debt, trade balance, openness ratio, and investment rate
+
+- Time series analysis tools such as moving averages, volatility, and stationarity tests
+
+- Forecasting models such as ARIMA and VAR
+
+- Economic interpretation modules linking macroeconomic variables
+
+- Interactive dashboard development for country-level macroeconomic analysis
 
 ---
 
