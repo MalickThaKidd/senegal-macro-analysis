@@ -78,19 +78,27 @@ Reusable functions are implemented in the `src/` directory.
 ---
 ## 🎯 Future Improvements
 
-This project is designed to evolve progressively into a macroeconomic analysis engine.
+### Roadmap
 
-Planned improvements include:
+- [x] Build a clean data pipeline using the World Bank API
 
-- Addition of new macroeconomic indicators such as debt, trade balance, openness ratio, and investment rate
+- [x] Add data cleaning and outlier detection functions
 
-- Time series analysis tools such as moving averages, volatility, and stationarity tests
+- [x] Add reusable visualization functions
 
-- Forecasting models such as ARIMA and VAR
+- [x] Add GDP growth rate indicator
 
-- Economic interpretation modules linking macroeconomic variables
+- [x] Add CAGR / TCAM indicator
 
-- Interactive dashboard development for country-level macroeconomic analysis
+- [ ] Add more macroeconomic indicators such as debt, trade balance, openness ratio, and investment rate
+
+- [ ] Add time series analysis tools such as moving averages, volatility, and stationarity tests
+
+- [ ] Add forecasting models such as ARIMA and VAR
+
+- [ ] Add economic interpretation modules linking macroeconomic variables
+
+- [ ] Build an interactive dashboard for country-level macroeconomic analysis
 
 ---
 
