@@ -1,8 +1,6 @@
 # 🇸🇳 Senegal Macroeconomic Analysis
 
-This project analyzes key macroeconomic indicators for Senegal using data from the World Bank API.
-
-The goal is to build a clean, reproducible pipeline to retrieve, process, and visualize economic data.
+The goal is to build a structured and reproducible macroeconomic analysis pipeline that retrieves, cleans, transforms, visualizes, and interprets economic data from the World Bank API.
 
 ---
 
@@ -27,19 +25,24 @@ All data is retrieved from the World Bank Open Data API.
 ## Project Structure
 
 ```
+## Project Structure
+
 senegal-macro-analysis/
-|
+│
 ├── data/
 │   ├── raw/
 │   └── processed/
-|
+│
 ├── notebooks/
 │   └── senegal_macroeconomic_analysis.ipynb
-|
+│
 ├── src/
-│   ├── utils.py          # Data retrieval, cleaning, and visualization functions
-│   └── indicators.py     # Macroeconomic indicator functions
-|
+│   ├── __init__.py
+│   ├── data.py
+│   ├── cleaning.py
+│   ├── indicators.py
+│   └── visualization.py
+│
 ├── README.md
 └── requirements.txt
 ```
@@ -51,21 +54,26 @@ senegal-macro-analysis/
 The analysis follows a structured pipeline:
 
 1. Data collection from the World Bank API
-2. Data cleaning, including missing values handling and outlier detection
+
+2. Data cleaning and preprocessing
+
 3. Macroeconomic indicator computation
-   - GDP growth rate
-   - CAGR / TCAM
+
 4. Data visualization and economic interpretation
 
 ---
 
 ## Utility Functions
 
-Reusable functions are implemented in the `src/` directory.
+Reusable functions are implemented in the `src/` directory and organized by responsibility.
 
-`src/utils.py` includes:
+`src/data.py` includes:
 - `get_data` → retrieve and structure data from the World Bank API
+
+`src/cleaning.py` includes:
 - `clean_data` → clean datasets and detect/remove outliers
+
+`src/visualization.py` includes:
 - `line_plt` → time series visualization
 - `hist_plt` → distribution analysis
 - `scat_plt` → relationship between variables
