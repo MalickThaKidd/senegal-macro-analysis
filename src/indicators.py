@@ -20,7 +20,7 @@ def compute_growth_rate(df, column, new_column="growth_rate"):
     
     return df
 
-#B. CAGR function 
+# B. CAGR Function
 def compute_cagr(df, column, start_year, end_year):
     """
     Compute the Compound Annual Growth Rate (CAGR) for a given time series.
@@ -42,4 +42,29 @@ def compute_cagr(df, column, start_year, end_year):
     cagr = ((end_value / start_value) ** (1 / years) - 1) * 100
     
     return cagr
+
+# C. Moving Average Function
+def compute_moving_average(df, column, window, new_column=None):
+    """
+    Compute the moving average of a time series.
+
+    Parameters:
+        df (pd.DataFrame): Input time-series DataFrame
+        column (str): Column used to compute moving average
+        window (int): Number of periods for moving average
+        new_column (str): Name of the moving average column
+
+    Returns:
+        pd.DataFrame: DataFrame with the moving average column added
+    """
+    df = df.copy()
+    df.index = pd.to_datetime(df.index)
+    df.sort_index(ascending=True, inplace=True)
+    
+    if new_column is None:
+        new_column = f"{column} {window}Y MA"
+        
+    df[new_column] = df[column].rolling(window=window).mean()
+    
+    return df
 
