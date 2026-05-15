@@ -54,13 +54,13 @@ senegal-macro-analysis/
 The analysis follows a structured pipeline:
 
 1. Data collection from the World Bank API
-
 2. Data cleaning and preprocessing
-
 3. Macroeconomic indicator computation
-
+   - GDP growth rate
+   - CAGR / TCAM
+   - Moving average
+   - Volatility
 4. Data visualization and economic interpretation
-
 ---
 
 ## Utility Functions
@@ -82,6 +82,8 @@ Reusable functions are implemented in the `src/` directory and organized by resp
 `src/indicators.py` includes:
 - `compute_growth_rate` → compute annual percentage growth
 - `compute_cagr` → compute compound annual growth rate over a selected period
+- `compute_moving_average` → smooth time-series indicators using a rolling average
+- `compute_volatility` → measure the instability of an indicator using standard deviation
 
 ---
 ## 🎯 Future Improvements
@@ -89,23 +91,17 @@ Reusable functions are implemented in the `src/` directory and organized by resp
 ### Roadmap
 
 - [x] Build a clean data pipeline using the World Bank API
-
 - [x] Add data cleaning and outlier detection functions
-
 - [x] Add reusable visualization functions
-
+- [x] Refactor source code into dedicated modules
 - [x] Add GDP growth rate indicator
-
 - [x] Add CAGR / TCAM indicator
-
+- [x] Add GDP growth moving average indicator
+- [x] Add GDP growth volatility indicator
 - [ ] Add more macroeconomic indicators such as debt, trade balance, openness ratio, and investment rate
-
-- [ ] Add time series analysis tools such as moving averages, volatility, and stationarity tests
-
+- [ ] Add advanced time series tools such as rolling volatility and stationarity tests
 - [ ] Add forecasting models such as ARIMA and VAR
-
 - [ ] Add economic interpretation modules linking macroeconomic variables
-
 - [ ] Build an interactive dashboard for country-level macroeconomic analysis
 
 ---
