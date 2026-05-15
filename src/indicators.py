@@ -68,3 +68,22 @@ def compute_moving_average(df, column, window, new_column=None):
     
     return df
 
+# D. Volatility Function
+def compute_volatility(df, column):
+    """
+    Compute the volatility (standard deviation) of a time series.
+
+    Parameters:
+        df (pd.DataFrame): Input time-series DataFrame
+        column (str): Column used to compute volatility
+
+    Returns:
+        float: Volatility value
+    """
+    df = df.copy()
+    df.index = pd.to_datetime(df.index)
+    df.sort_index(ascending=True, inplace=True)
+    
+    volatility = df[column].dropna().std()
+    
+    return volatility
